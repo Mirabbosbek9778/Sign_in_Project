@@ -45,7 +45,10 @@ export const loadTests =
   async (
     dispatch: (arg0: {
       payload: unknown;
-      type: "tests/setTests" | "tests/loadTestResultsFailure";
+      type:
+        | "tests/setTests"
+        | "tests/loadTestResults"
+        | "tests/loadTestResultsFailure";
     }) => void
   ) => {
     try {
@@ -54,7 +57,7 @@ export const loadTests =
       dispatch(setTests(tests));
     } catch (error) {
       if (error instanceof Error) {
-        dispatch(loadTestResultsFailure(error?.message));
+        dispatch(loadTestResultsFailure(error.message));
       } else {
         dispatch(loadTestResultsFailure("Erroring"));
       }

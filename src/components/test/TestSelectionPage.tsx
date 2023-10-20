@@ -10,16 +10,22 @@ import {
 import { Title, Wrapper } from "../auth/style";
 
 const TestSelectionPage = () => {
-  const tests = useSelector(selectTests);
+  const tests = useSelector(selectTests) as Test[];
   const loading = useSelector(selectLoading);
-  const user = useSelector(selectUser);
-  const error = useSelector(selectError);
+  const user = useSelector(selectUser) as User;
+  const error = useSelector(selectError) as TestsError;
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(loadTestResults());
   }, [dispatch]);
 
+  type TestsError = {
+    message: string;
+  };
+  type User = {
+    username: string;
+  };
   type Test = {
     id: string;
     user: string;

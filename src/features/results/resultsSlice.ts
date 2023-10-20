@@ -1,4 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { ReactNode } from "react";
+
 type Result = {
   user: ReactNode;
   score: ReactNode;

@@ -9,11 +9,11 @@ import {
 const TestPage = () => {
   const dispatch = useDispatch();
   const selectedTest = useSelector(selectSelectedTest);
-  const testResults = useSelector(selectTestResults);
+  const testResults = useSelector(selectTestResults) as Result[];
 
   useEffect(() => {
-    if (selectedTest) {
-      dispatch(loadTestResults(selectedTest.id));
+    if (selectedTest && selectedTest) {
+      dispatch(loadTestResults(selectedTest));
     }
   }, [dispatch, selectedTest]);
 
@@ -25,7 +25,7 @@ const TestPage = () => {
 
   return (
     <div>
-      <h2>Test: {selectedTest ? selectedTest?.name : "Loading..."}</h2>
+      <h2>Test: {selectedTest ? selectedTest : "Loading..."}</h2>
       <h3>Test Results</h3>
       <ul>
         {testResults.map((result: Result) => (
