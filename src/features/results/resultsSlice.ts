@@ -1,5 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 type Result = {
+  user: ReactNode;
+  score: ReactNode;
   id: number;
   name: string;
 };

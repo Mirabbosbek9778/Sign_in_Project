@@ -14,12 +14,6 @@ const ResultPage = () => {
     dispatch(loadResults());
   }, [dispatch]);
 
-  type Result = {
-    id: string;
-    user: string;
-    score: number;
-  };
-
   return (
     <Wrapper>
       <Title>All Results</Title>
@@ -32,7 +26,7 @@ const ResultPage = () => {
             </tr>
           </thead>
           <tbody>
-            {results?.map((result: Result) => (
+            {results?.map((result) => (
               <tr key={result?.id}>
                 <td>{result?.user}</td>
                 <td>{result?.score}</td>
@@ -41,7 +35,7 @@ const ResultPage = () => {
           </tbody>
         </table>
       ) : (
-        <Title size>Loading rezults...</Title>
+        <Title>Loading rezults...</Title>
       )}
     </Wrapper>
   );
