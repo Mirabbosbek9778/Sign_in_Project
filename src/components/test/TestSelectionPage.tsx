@@ -43,7 +43,7 @@ const TestSelectionPage = () => {
           </ul>
         </div>
       ) : (
-        <Title size>Please login or register access tests!!!!!!!!!!.</Title>
+        <Title>Please login or register access tests!!!!!!!!!!.</Title>
       )}
     </Wrapper>
   );

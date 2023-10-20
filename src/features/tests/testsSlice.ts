@@ -40,21 +40,38 @@ export const {
   loadTestResultsFailure,
 } = testsSlice.actions;
 
-export const loadTests = () => async (dispatch) => {
-  try {
-    dispatch(loadTestResultsStart());
-    const tests = await fetchTests();
-    dispatch(setTests(tests));
-  } catch (error) {
-    dispatch(loadTestResultsFailure(error?.message));
-  }
-};
+export const loadTests =
+  () =>
+  async (
+    dispatch: (arg0: {
+      payload: unknown;
+      type: "tests/setTests" | "tests/loadTestResultsFailure";
+    }) => void
+  ) => {
+    try {
+      dispatch(loadTestResults());
+      const tests = await fetchTests();
+      dispatch(setTests(tests));
+    } catch (error) {
+      if (error instanceof Error) {
+        dispatch(loadTestResultsFailure(error?.message));
+      } else {
+        dispatch(loadTestResultsFailure("Erroring"));
+      }
+    }
+  };
 
-export const selectTests = (state) => state?.tests?.tests;
-export const selectSelectedTest = (state) => state?.tests?.selectedTest;
-export const selectTestResults = (state) => state?.tests?.testResults;
-export const selectLoading = (state) => state?.tests?.loading;
-export const selectError = (state) => state?.tests?.error;
-export const selectUser = (state) => state?.tests?.user;
+export const selectTests = (state: { tests: { tests: unknown } }) =>
+  state?.tests?.tests;
+export const selectSelectedTest = (state: { tests: { selectedTest: never } }) =>
+  state?.tests?.selectedTest;
+export const selectTestResults = (state: { tests: { testResults: unknown } }) =>
+  state?.tests?.testResults;
+export const selectLoading = (state: { tests: { loading: unknown } }) =>
+  state?.tests?.loading;
+export const selectError = (state: { tests: { error: unknown } }) =>
+  state?.tests?.error;
+export const selectUser = (state: { tests: { user: unknown } }) =>
+  state?.tests?.user;
 
 export default testsSlice.reducer;

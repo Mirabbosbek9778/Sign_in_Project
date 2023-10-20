@@ -1,5 +1,8 @@
 import styled from "styled-components";
 
+interface TitleProps {
+  size?: boolean;
+}
 const Wrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -9,7 +12,7 @@ const Wrapper = styled.div`
   gap: 10px;
 `;
 
-const Title = styled.div`
+const Title = styled.div<TitleProps>`
   color: black;
   font-family: Monserrat, sans-serif;
   font-size: ${({ size }) => (size ? "20px" : "40px")};

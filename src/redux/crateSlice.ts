@@ -8,7 +8,8 @@ const crateSlice = createSlice({
   reducers: {},
 });
 
+// eslint-disable-next-line no-empty-pattern
 export const {} = crateSlice.actions;
-export const selectCrate = (state) => state?.crate;
+export const selectCrate = (state: { crate: unknown }) => state?.crate;
 
 export default crateSlice.reducer;
